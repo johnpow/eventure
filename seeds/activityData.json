@@ -1,0 +1,23 @@
+[
+  {
+    "activity_title": "Music Near Me",
+    "activity_description": "We love music! Come join us for a night of music and fun!",
+    "activity_date": "2023-05-18 18:00:00",
+    "activity_location": "Redmond, WA",
+    "activity_category": "Music"
+  },
+  {
+    "activity_title": "The Ultimate Pub Quiz",
+    "activity_description": "A fun time for all! Come join us for a night of trivia and drinks!",
+    "activity_date": "2023-05-19 20:00:00",
+    "activity_location": "Seattle, WA",
+    "activity_category": "Trivia"
+  },
+  {
+    "activity_title": "Stand-up Paddleboarding",
+    "activity_description": "Come join us for a day of paddleboarding!",
+    "activity_date": "2023-05-20 10:00:00",
+    "activity_location": "South Lake Union, WA",
+    "activity_category": "Adventure"
+  }
+]
