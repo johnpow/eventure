@@ -1,0 +1,21 @@
+{{#each activities as |activity| }}
+<div class="container my-3 py-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="bg-light p-4">
+          <div class="d-flex justify-content-between">
+            <h3>{{activity.activity_title}}</h3>
+            <h6 class="mt-2">Posted by {{activity.user.username}}</h6>
+          </div>
+          <p>{{activity.activity_description}}</p> 
+          <p><b>Date and Time: </b>{{activity.activity_date}}</p>
+          <p><b>Location: </b>{{activity.activity_location}}</p> 
+          <button type="button" class="btn btn-primary">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+
+
+
