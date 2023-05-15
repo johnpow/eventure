@@ -1,0 +1,37 @@
+<div class="container my-3 py-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="bg-white p-4">
+          <h1 class="text-center text-primary">My Activities</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{#each activities as |activity| }}
+  <div class="container my-3 py-1">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="bg-light p-4">
+            <h2><a href="/blog/{{activity.id}}">{{activity.activity_title}}</a></h2>
+            <p>{{activity.activity_description}}</p>
+            <p><b>Date and Time: </b>{{activity.activity_date}}</p>
+            <p><b>Location: </b>{{activity.activity_location}}</p>
+          </div>
+        </div>
+     </div>
+  </div>
+{{/each}}
+
+<div class="container my-3 py-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="bg-white p-4">
+          <h1 class="text-center text-primary"><a href="/newActivity">Post Activity</a></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
