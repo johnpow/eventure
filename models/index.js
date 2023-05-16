@@ -12,11 +12,22 @@ Activity.belongsTo(User, {
   foreignKey: 'user_id'
 });
 
-User.belongsToMany(Activity, {
-  through: SignUp,
-  as: 'signed_up_activities',
+User.hasMany(SignUp, {
   foreignKey: 'user_id',
-  onDelete: 'CASCADE'
+  onDelete: 'CASCADE',
+});
+
+SignUp.belongsTo(User, {
+  foreignKey: 'user_id',
+});
+
+Activity.hasMany(SignUp, {
+  foreignKey: 'activity_id',
+  onDelete: 'CASCADE',
+});
+
+SignUp.belongsTo(Activity, {
+  foreignKey: 'activity_id',
 });
 
 
