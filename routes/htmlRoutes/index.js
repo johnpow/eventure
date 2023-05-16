@@ -11,9 +11,18 @@ router.get('/', async (req, res) => {
                         model: User,
                         attributes: ['username'],              
                     },
+                    { model: SignUp, 
+                      include: [        {
+                                  model: User,
+                                  attributes: ['username'],
+                              },],
+            
+                    },
+
                 ],
             });
     
+
             const activities = activityData.map((activity) => activity.get({ plain: true }));
             console.log(req.session.user || null);
             res.render('homepage', {
