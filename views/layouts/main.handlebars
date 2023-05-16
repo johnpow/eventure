@@ -11,17 +11,20 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light" id="bg-color">
+  <nav class="navbar navbar-expand-lg sticky-top navvybar">
+    <a class="navbar-brand me-2 logo" href="#">
+    <img class="navLogo" src="/images/eventureLogo.png" width="40" height="40" alt="Eventure logo">
+  </a>
     <!-- Container wrapper -->
     <div class="container-fluid">
       <!-- Navbar brand -->
       <a class="navbar-brand me-2">
-        <h1 class="text-white">Eventure</h1>
+        <h1 class="text-turquoise">Eventure</h1>
       </a>
   
       <!-- Toggle button -->
       <button
-        class="navbar-toggler"
+        class="navbar-toggler white2red"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarButtonsExample"
@@ -29,7 +32,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars white2red"></i>
       </button>
   
       <!-- Collapsible wrapper -->
@@ -37,23 +40,19 @@
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link text-white" id="text-font" href="/">Home</a>
+            <a class="nav-link white2red" id="text-font" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" id="text-font" href="/dashboard">Dashboard</a>
+            <a class="nav-link white2red" id="text-font" href="/dashboard">Dashboard</a>
           </li>
         </ul>
         <!-- Left links -->
   
         <div class="d-flex align-items-center">
           {{#if logged_in}}
-          <button type="button" class="btn btn-light me-3">
-            <a id="logout">Logout</a> 
-          </button>
+            <a class="bucksNavButton" id="logout">Logout</a>           
           {{else}}
-          <button type="button" class="btn btn-light me-3">
-            <a href="/login">Login</a>
-          </button>
+            <a class="bucksNavButton" href="/login">Login</a>
           {{/if}}
         </div>
       </div>

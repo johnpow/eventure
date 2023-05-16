@@ -1,5 +1,3 @@
-console.log("signup.js loaded");
-
 const signupFormHandler = async (event) => {
     console.log("signupFormHandler called");
     event.preventDefault();
