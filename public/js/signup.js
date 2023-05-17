@@ -1,5 +1,6 @@
 // const $commentForm = document.querySelector('#comment-form');
 const $parentDiv = document.querySelector('#parent');
+const $manageEvent = document.querySelector('#manageEvent');
 
 const createSignUp = async (event) => {
     event.preventDefault();
@@ -29,8 +30,14 @@ const createSignUp = async (event) => {
 };
 
 const deleteSignUp = async (event) => {
-    event.preventDefault();
+    console.log('deleteSignUp');
     let e = event.target;
+    event.preventDefault();
+    if(e === $manageEvent) {
+        const href = e.getAttribute('href');
+        document.location.replace(href);  
+    }
+    
     if (e.matches('.dropSupBtn')) {
         const activity_id = e.getAttribute('data-id');
     

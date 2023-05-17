@@ -26,7 +26,7 @@ const seedDatabase = async () => {
   console.log(mappedActivities);
 
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 6; i++) {
     await SignUp.create({
       user_id: users[i].id,
       activity_id: mappedActivities[i].id,

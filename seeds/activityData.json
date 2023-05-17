@@ -19,5 +19,90 @@
     "activity_date": "2023-05-20 10:00:00",
     "activity_location": "South Lake Union, WA",
     "activity_category": "Adventure"
+  },
+  {
+    "activity_title": "Hiking Adventure at Mount Rainier",
+    "activity_description": "Join us for a guided hike through the scenic trails of Mount Rainier National Park.",
+    "activity_date": "2023-05-17 09:00:00",
+    "activity_location": "Mount Rainier, WA",
+    "activity_category": "Outdoors"
+  },
+  {
+    "activity_title": "Dog Meetup at Golden Gardens Park",
+    "activity_description": "Bring your furry friends and socialize with other dog owners at Golden Gardens Park.",
+    "activity_date": "2023-05-18 16:00:00",
+    "activity_location": "Seattle, WA",
+    "activity_category": "Pets"
+  },
+  {
+    "activity_title": "Tech Workshop: Introduction to Python Programming",
+    "activity_description": "Learn the basics of Python programming in this hands-on workshop designed for beginners.",
+    "activity_date": "2023-05-19 13:00:00",
+    "activity_location": "Downtown Seattle, WA",
+    "activity_category": "Tech"
+  },
+  {
+    "activity_title": "Social Mixer at Pike Place Market",
+    "activity_description": "Join us for a casual social gathering at Pike Place Market. Meet new people and enjoy the vibrant atmosphere.",
+    "activity_date": "2023-05-20 18:30:00",
+    "activity_location": "Pike Place Market, Seattle, WA",
+    "activity_category": "Social"
+  },
+  {
+    "activity_title": "Art History Lecture: Impressionism and Its Influence",
+    "activity_description": "Explore the world of Impressionism and its impact on the art world in this educational lecture.",
+    "activity_date": "2023-05-21 14:00:00",
+    "activity_location": "Seattle Art Museum, WA",
+    "activity_category": "Education"
+  },
+  {
+    "activity_title": "Family Fun Day: Science Experiments for Kids",
+    "activity_description": "Engage your little ones with exciting science experiments and interactive activities.",
+    "activity_date": "2023-05-22 11:00:00",
+    "activity_location": "Pacific Science Center, Seattle, WA",
+    "activity_category": "Kid Friendly"
+  },
+  {
+    "activity_title": "Seattle Mariners Baseball Game",
+    "activity_description": "Cheer for the Seattle Mariners as they take on their rivals at T-Mobile Park.",
+    "activity_date": "2023-05-23 19:10:00",
+    "activity_location": "T-Mobile Park, Seattle, WA",
+    "activity_category": "Sports"
+  },
+  {
+    "activity_title": "Arts and Crafts Workshop: Pottery Making",
+    "activity_description": "Unleash your creativity and learn the art of pottery making in this hands-on workshop.",
+    "activity_date": "2023-05-24 15:00:00",
+    "activity_location": "Fremont, Seattle, WA",
+    "activity_category": "Arts and Crafts"
+  },
+  {
+      "activity_title": "Concert: Indie Rock Showcase",
+      "activity_description": "Discover the best up-and-coming indie rock bands at this showcase event.",
+      "activity_date": "2023-05-25 20:00:00",
+      "activity_location": "Neumos, WA",
+      "activity_category": "Music"
+  },
+  {
+      "activity_title": "Paint and Sip Night at Bottlehouse",
+      "activity_description": "Unleash your creativity and enjoy some wine at this paint and sip night at Bottlehouse.",
+      "activity_date": "2023-05-24 18:00:00",
+      "activity_location": "Madison Park, WA",
+      "activity_category": "Arts and Crafts"
+  },
+      {
+      "activity_title": "Happy Hour at Fremont Brewing Company",
+      "activity_description": "Join us for a relaxed evening of craft beer and good company at Fremont Brewing Company.",
+      "activity_date": "2023-05-20 18:00:00",
+      "activity_location": "Fremont, WA",
+      "activity_category": "Social"
+  },
+  {
+      "activity_title": "Cooking Class: Italian Cuisine",
+      "activity_description": "Learn how to make classic Italian dishes in this interactive cooking class led by a professional chef.",
+      "activity_date": "2023-05-21 15:00:00",
+      "activity_location": "Capitol Hill, WA",
+      "activity_category": "Education"
   }
+
 ]
