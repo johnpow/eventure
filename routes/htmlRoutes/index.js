@@ -21,12 +21,17 @@ router.get('/', async (req, res) => {
 
                 ],
             });
-    
+            const categoriesData = await Activity.findAll({
+                group: ['activity_category'],
+                attributes: ['activity_category'],
+            });
+            const categories = categoriesData.map((category) => category.get({ plain: true }));
 
             const activities = activityData.map((activity) => activity.get({ plain: true }));
             console.log(req.session.user || null);
             res.render('homepage', {
                 activities,
+                categories,
                 logged_in: req.session.logged_in || false,
                 user: req.session.user || null,
             });
@@ -47,9 +52,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
       });
   
       const user = userData.get({ plain: true });
+      const categoriesData = await Activity.findAll({
+        group: ['activity_category'],
+        attributes: ['activity_category'],
+      });
+      const categories = categoriesData.map((category) => category.get({ plain: true }));
         
       res.render('dashboard', {
         ...user,
+        categories,
         logged_in: true
       });
     } catch (err) {
@@ -76,6 +87,99 @@ router.get('/register', (req, res) => {
 
     res.render('register');
 });
+
+router.get('/newActivity', withAuth, async (req, res) => {
+  try {
+      res.render('createActivity', {
+          logged_in: req.session.logged_in || false
+      });
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
+
+router.get('/signedUpActivities', withAuth, async (req, res) => {
+    try {
+        const signUpData = await SignUp.findAll({
+            where: {
+                user_id: req.session.user_id,
+            },
+            include: [
+                {
+                    model: Activity,
+                    include: [
+                        {
+                            model: User,
+                            attributes: ['username'],
+                        },
+                        {   model: SignUp, 
+                            include: [        {
+                                        model: User,
+                                        attributes: ['username'],
+                                    },],
+                  
+                        },
+                    ],        
+                },
+            ],
+        });
+        const categoriesData = await Activity.findAll({
+            group: ['activity_category'],
+            attributes: ['activity_category'],
+        });
+        const categories = categoriesData.map((category) => category.get({ plain: true }));
+        const signedUpActivities = signUpData.map((activity) => activity.get({ plain: true }));
+        console.log(signedUpActivities);
+        res.render('signedUpActivities', {
+            signedUpActivities,
+            categories,
+            logged_in: req.session.logged_in || false,
+            user: req.session.user || null,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get("/:category", async (req, res) => {
+    try {
+        const activityData = await Activity.findAll({
+            where: {
+                activity_category: req.params.category,
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+                { model: SignUp,
+                    include: [        {
+                                model: User,
+                                attributes: ['username'],
+                            },],
+                },
+            ],
+        });
+        const categoriesData = await Activity.findAll({
+            group: ['activity_category'],
+            attributes: ['activity_category'],
+        });
+
+        const categories = categoriesData.map((category) => category.get({ plain: true }));
+        const activities = activityData.map((activity) => activity.get({ plain: true }));
+        res.render('activitiesByCategory', {
+            activities,
+            categories,
+            logged_in: req.session.logged_in || false,
+            user: req.session.user || null,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
+
 
 
 

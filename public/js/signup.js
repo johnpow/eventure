@@ -29,6 +29,7 @@ const createSignUp = async (event) => {
 };
 
 const deleteSignUp = async (event) => {
+    console.log('deleteSignUp');
     event.preventDefault();
     let e = event.target;
     if (e.matches('.dropSupBtn')) {

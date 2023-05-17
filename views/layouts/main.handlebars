@@ -45,6 +45,19 @@
           <li class="nav-item">
             <a class="nav-link white2red" id="text-font" href="/dashboard">Dashboard</a>
           </li>
+          {{#if logged_in}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle white2red" id="text-font" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
+            <ul class="dropdown-menu">
+              {{#each categories as |category|}}
+                <li><a class="dropdown-item" href="/{{category.activity_category}}">{{category.activity_category}}</a></li>
+              {{/each}}
+            </ul>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link white2red" id="text-font" href="/signedUpActivities">SignedUp</a>
+          </li>
+          {{/if}}
         </ul>
         <!-- Left links -->
   

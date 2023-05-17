@@ -5,7 +5,7 @@ const userRoutes = require('./userRoutes');
 const editactRoutes = require('./editactRoutes');
 
 router.use('/users', userRoutes);
-router.use('/blogposts', activityRoutes);
+router.use('/activity', activityRoutes);
 router.use('/signup', signupRoutes);
 router.use('/editact', editactRoutes);
 module.exports = router;
