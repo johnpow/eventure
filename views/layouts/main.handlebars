@@ -39,14 +39,15 @@
       <!-- Collapsible wrapper -->
       <div class="collapse navbar-collapse" id="navbarButtonsExample">
         <!-- Left links -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+          {{#if logged_in}}
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link white2red" id="text-font" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link white2red" id="text-font" href="/dashboard">Dashboard</a>
+            <a class="nav-link white2red" id="text-font" href="/dashboard">My Events</a>
           </li>
-          {{#if logged_in}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle white2red" id="text-font" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
             <ul class="dropdown-menu">
@@ -56,7 +57,7 @@
             </ul>
           </li>
            <li class="nav-item">
-            <a class="nav-link white2red" id="text-font" href="/signedUpActivities">SignedUp</a>
+            <a class="nav-link white2red" id="text-font" href="/signedUpActivities">Signed Up</a>
           </li>
           {{/if}}
         </ul>

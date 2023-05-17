@@ -162,7 +162,7 @@ router.get('/signedUpActivities', withAuth, async (req, res) => {
     }
 });
 
-router.get('/updateEvent',withAuth, async (req, res) => {
+router.get('/updateEvent/:id',withAuth, async (req, res) => {
     console.log("updateEvent");
     try {
         const activityData = await Activity.findByPk(req.params.id, {
@@ -180,7 +180,9 @@ router.get('/updateEvent',withAuth, async (req, res) => {
 
         const categories = categoriesData.map((category) => category.get({ plain: true }));
         const activity = activityData.get({ plain: true });
-       
+        const dateData = activity.activity_date;
+        console.log(date);
+        console.log(time);
         res.render('updateEvent', {
             activity,
             categories,

@@ -15,7 +15,7 @@
           <p><b>Location: </b>{{activity.activity_location}}</p> 
               <div class="d-flex justify-content-between align-items-center">
                 {{#if isHost}}
-                {{!-- <a href="/updateEvent">Manage Event</a> --}}
+                <a id ="manageEvent" href="/updateEvent/{{activity.id}}">Manage Event</a>
                 {{else}}
               {{#if isUserSignedUp}}
                 <button
