@@ -13,5 +13,21 @@
     "username": "Amiko",
     "email": "amiko2k20@aol.com",
     "password": "password12345"
+  },
+  {
+    "username": "Saritha",
+    "email": "saritha@cool.com",
+    "password": "password"
+  },
+  {
+    "username": "John",
+    "email": "john@cool.com",
+    "password": "password"
+  },
+  {
+    "username": "Amiko",
+    "email": "buck@cool.com",
+    "password": "password"
   }
+
 ]

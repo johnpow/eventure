@@ -14,7 +14,9 @@
           <p><b>Date and Time: </b>{{activity.activity_date}}</p>
           <p><b>Location: </b>{{activity.activity_location}}</p> 
               <div class="d-flex justify-content-between align-items-center">
-
+                {{#if isHost}}
+                {{!-- <a href="/updateEvent">Manage Event</a> --}}
+                {{else}}
               {{#if isUserSignedUp}}
                 <button
                   class="btn btn-outline-primary btn-sm dropSupBtn bucksButton"
@@ -24,7 +26,7 @@
                   data-bs-target="#add-comment-form{{activity.id}}"
                   aria-expanded="false"
                   aria-controls="add-comment-form"
-                >Drop Activity</button>
+                >Drop Event</button>
                 {{else}}
                 <button
                   class="btn btn-outline-primary btn-sm signupBtn bucksSignupButton"
@@ -36,6 +38,7 @@
                   aria-controls="add-comment-form"
                 >Sign-up</button>
               {{/if}}
+              {{/if}}
                 <button
                   class="btn btn-outline-dark btn-sm "
                   id="view-comment-btn"
@@ -44,10 +47,13 @@
                   data-bs-target="#view-comment-list{{activity.id}}"
                   aria-expanded="false"
                   aria-controls="view-comment-list"
-                >View Attendees</button>
+                >View Attendees ({{activity.signupsCount}})</button>
               </div>
               <div class="collapse mt-3" id="view-comment-list{{activity.id}}">
                 <ol>
+                  <div>
+                    <b><li>@{{activity.user.username}} (Host)</li></b>
+                  </div>                  
                 {{#each activity.signups as |signup|}}
                   <div>
                     <b><li>@{{signup.user.username}}</li></b>

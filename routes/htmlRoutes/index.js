@@ -20,17 +20,27 @@ router.get('/', async (req, res) => {
                   },
 
               ],
+              order: [['activity_date', 'ASC']],
+            //   where: {
+            //         activity_date: {
+            //             [Op.gt]: new Date(),
+            //         },
+            //     },
           });
 
           const activities = activityData.map((activity) => {
             const plainActivity = activity.get({ plain: true });
             const username = req.session.user.username || null;
             const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
+            const signupsCount = plainActivity.signups.length + 1;
+            const isHost = plainActivity.user.username === username;
 
           
             return {
               ...plainActivity,
-              isUserSignedUp: isUserSignedUp
+              isUserSignedUp: isUserSignedUp,
+              signupsCount: signupsCount,
+              isHost: isHost,
             };
           });
           const categoriesData = await Activity.findAll({
@@ -151,6 +161,37 @@ router.get('/signedUpActivities', withAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.get('/updateEvent',withAuth, async (req, res) => {
+    console.log("updateEvent");
+    try {
+        const activityData = await Activity.findByPk(req.params.id, {
+            include: [
+                {   
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+        });
+        const categoriesData = await Activity.findAll({
+            group: ['activity_category'],
+            attributes: ['activity_category'],
+        });
+
+        const categories = categoriesData.map((category) => category.get({ plain: true }));
+        const activity = activityData.get({ plain: true });
+       
+        res.render('updateEvent', {
+            activity,
+            categories,
+            logged_in: req.session.logged_in || false,
+            user: req.session.user || null,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 router.get("/:category", async (req, res) => {
     try {
