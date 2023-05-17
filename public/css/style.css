@@ -18,13 +18,12 @@ h5 {
 .navvybar {
     background-color: var(--richBlack);
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 5px;
 }
 
 .logo {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 1rem;
 }
 
 .navLogo {
@@ -45,6 +44,7 @@ h5 {
     background-color: var(--red);
     color: white;
     border: none;
+    cursor: pointer;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -54,6 +54,7 @@ h5 {
     text-decoration: none;
     padding: 0.375rem 0.75rem;
     border-radius: 0.25rem;
+    border: 1px solid var(--red);
 }
 
 .bucksButton:hover {
@@ -62,17 +63,93 @@ h5 {
     border: 1px solid var(--red);
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.bucksSignupButton {
+    background-color: var(--calPolyGreen);
+    color: white;
+    text-decoration: none;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--calPolyGreen);
+}
+
+.bucksSignupButton:hover {
+    background-color: white;
+    color: var(--calPolyGreen);
+    border: 1px solid var(--calPolyGreen);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.newEventButton {
+    background-color: white;
+    color: var(--calPolyGreen);
+    text-decoration: none;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--calPolyGreen);
+}
+
+.newEventButton:hover {
+    background-color: var(--calPolyGreen);
+    color: white;
+    border: 1px solid var(--calPolyGreen);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
 .text-turquoise {
     color: var(--turquoise);
 }
 
+.display {
+    background-position: center center;
+    background-size: cover;
+    background-image: url(/images/eventureBG.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bucksCard {
+    border: 0.375rem solid var(--richBlack);
+    padding: 0;
+    border-radius: 0.5rem;
+    max-width: 600px;
+}
+
+.textPadding {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.plainText {
+    text-decoration: none;
+    color: white;
+}
+
+.plainText:hover {
+    color: var(--turquoise);
+}
+
+.banner {
+    background-color: var(--richBlack);
+    color: white;
+}
+
+.blackText {
+    color: black;
+}
+
 #bg-color {
-    background-color: #3064b8;
+    background-color: var(--richBlack);
     color: #ffffff;
 }
 
 .white2red {
     color: #ffffff;
+}
+
+.body {
+    background-color: transparent;
 }
 
 .white2red:hover {
@@ -88,7 +165,6 @@ h5 {
 }
 
 .hero-section {
-    background-color: #f2f2f2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,7 +179,11 @@ h5 {
     border-radius: 0.5rem;
     margin-bottom: 5rem;
   }
-  
+
+.underline {
+    max-width: 600px;
+    border-bottom: 2px solid var(--richBlack);
+}
 /* #37757d */
 /* #706d51 */
 /* #5a6e7d */
