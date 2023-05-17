@@ -26,6 +26,8 @@ router.get('/', async (req, res) => {
             const plainActivity = activity.get({ plain: true });
             const username = req.session.user.username || null;
             const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
+
+          
             return {
               ...plainActivity,
               isUserSignedUp: isUserSignedUp
