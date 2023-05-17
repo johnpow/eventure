@@ -1,19 +1,21 @@
-{{!-- <div class="container my-3 py-1">
+
+<div class="container my-3 py-1">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="bg-white p-4">
-          <h1 class="text-center text-primary">My Activities</h1>
-      </div>
-    </div>
+      {{!-- <div class="col-lg-8"> --}}
+        {{!-- <div class="bg-white p-4"> --}}
+          <h1 class="text-center underline">Welcome back {{username}}</h1>
+      {{!-- </div> --}}
+    {{!-- </div> --}}
   </div>
 </div>
-
+<div>
+<h2 class="text-center">My Events</h2>
 {{#each activities as |activity| }}
   <div class="container my-3 py-1">
       <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="bg-light p-4">
-            <h2><a href="/blog/{{activity.id}}">{{activity.activity_title}}</a></h2>
+        <div class="col-lg-8 bucksCard banner">
+          <h2 class="textPadding"><a class="plainText" href="/blog/{{activity.id}}">{{activity.activity_title}}</a></h2>
+          <div class="bg-light p-4 blackText">
             <p>{{activity.activity_description}}</p>
             <p><b>Date and Time: </b>{{activity.activity_date}}</p>
             <p><b>Location: </b>{{activity.activity_location}}</p>
@@ -22,52 +24,13 @@
      </div>
   </div>
 {{/each}}
+</div>
 
 <div class="container my-3 py-1">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="bg-white p-4">
-          <h1 class="text-center text-primary"><a href="/newActivity">Create Activity</a></h1>
-      </div>
+          <h3 class="text-center text-primary"><a class="newEventButton" href="/newActivity">Create New Event</a></h3>
     </div>
-  </div>
 </div>
 
 
- --}}
-
-<div class="container my-3 py-1">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="bg-white p-4">
-        <h1 class="text-center text-primary">My Activities</h1>
-      </div>
-    </div>
-  </div>
-</div>
-
-{{#each activities as |activity| }}
-<div class="container my-3 py-1">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="bg-light p-4">
-        <h2><a href="/blog/{{activity.id}}" class="text-decoration-none">{{activity.activity_title}}</a></h2>
-        <p class="mb-3">{{activity.activity_description}}</p>
-        <p><strong>Date and Time: </strong>{{activity.activity_date}}</p>
-        <p><strong>Location: </strong>{{activity.activity_location}}</p>
-      </div>
-    </div>
-  </div>
-</div>
-{{/each}}
-
-<div class="container my-3 py-1">
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="bg-white p-4">
-        <h1 class="text-center text-primary"><a href="/newActivity" class="text-decoration-none">Create Activity</a></h1>
-      </div>
-    </div>
-  </div>
-</div>
 

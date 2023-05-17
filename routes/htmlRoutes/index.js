@@ -3,44 +3,55 @@ const { Activity, User, SignUp } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', async (req, res) => {
-    if(req.session.logged_in) {
-        try {
-            const activityData = await Activity.findAll({
-                include: [
-                    {
-                        model: User,
-                        attributes: ['username'],              
-                    },
-                    { model: SignUp, 
-                      include: [        {
-                                  model: User,
-                                  attributes: ['username'],
-                              },],
-            
-                    },
+  if(req.session.logged_in) {
+      try {
+          const activityData = await Activity.findAll({
+              include: [
+                  {
+                      model: User,
+                      attributes: ['username'],              
+                  },
+                  { model: SignUp, 
+                    include: [        {
+                                model: User,
+                                attributes: ['username'],
+                            },],
+          
+                  },
 
-                ],
-            });
-            const categoriesData = await Activity.findAll({
-                group: ['activity_category'],
-                attributes: ['activity_category'],
-            });
-            const categories = categoriesData.map((category) => category.get({ plain: true }));
+              ],
+          });
 
-            const activities = activityData.map((activity) => activity.get({ plain: true }));
-            console.log(req.session.user || null);
-            res.render('homepage', {
-                activities,
-                categories,
-                logged_in: req.session.logged_in || false,
-                user: req.session.user || null,
-            });
-        } catch (err) {
-            res.status(500).json(err);
-        }
-    } else { 
-        res.render('home');
-    }  
+          const activities = activityData.map((activity) => {
+            const plainActivity = activity.get({ plain: true });
+            const username = req.session.user.username || null;
+            const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
+
+          
+            return {
+              ...plainActivity,
+              isUserSignedUp: isUserSignedUp
+            };
+          });
+          const categoriesData = await Activity.findAll({
+            group: ['activity_category'],
+            attributes: ['activity_category'],
+        });
+        const categories = categoriesData.map((category) => category.get({ plain: true }));
+          
+
+          res.render('homepage', {
+              activities,
+              categories,
+              logged_in: req.session.logged_in || false,
+              user: req.session.user || null,
+          });
+      } catch (err) {
+          res.status(500).json(err);
+      }
+  } else { 
+      res.render('home');
+  }  
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
