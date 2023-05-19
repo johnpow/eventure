@@ -7,26 +7,26 @@ router.post('/', async (req, res) => {
     const userData = await User.create(req.body);
 
     const user = userData.get({ plain: true });
-    
-try {
 
-    const send = require('gmail-send')({
-      user: 'eventure.confirm@gmail.com',
-      pass: process.env.GMAIL_PASSWORD,
-    
-    });
+// try {
 
-        send({
-          to:  `${req.body.email}`,
-          subject: `Welcome ${req.body.username}! You are now part of Eventure!`,
-          text:    'Please explore the site and sign up for some events!',  
-        }, (error, result, fullResult) => {
-          if (error) console.error(error);
-          console.log(result);
-        })
-      } catch (err) {
-        res.status(500).json(err);
-      }
+//     const send = require('gmail-send')({
+//       user: 'eventure.confirm@gmail.com',
+//       pass: process.env.GMAIL_PASSWORD,
+    
+//     });
+
+//         send({
+//           to:  `${req.body.email}`,
+//           subject: `Welcome ${req.body.username}! You are now part of Eventure!`,
+//           text:    'Please explore the site and sign up for some events!',  
+//         }, (error, result, fullResult) => {
+//           if (error) console.error(error);
+//           console.log(result);
+//         })
+//       } catch (err) {
+//         res.status(500).json(err);
+//       }
 
     req.session.save(() => {
       req.session.email = user.email;
