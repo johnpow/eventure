@@ -1,32 +1,13 @@
 const router = require('express').Router();
 const { User } = require('../../../models');
 const dotenv = require('dotenv').config();
+const nodemailer = require('nodemailer');
 
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
     const user = userData.get({ plain: true });
-
-// try {
-
-//     const send = require('gmail-send')({
-//       user: 'eventure.confirm@gmail.com',
-//       pass: process.env.GMAIL_PASSWORD,
-    
-//     });
-
-//         send({
-//           to:  `${req.body.email}`,
-//           subject: `Welcome ${req.body.username}! You are now part of Eventure!`,
-//           text:    'Please explore the site and sign up for some events!',  
-//         }, (error, result, fullResult) => {
-//           if (error) console.error(error);
-//           console.log(result);
-//         })
-//       } catch (err) {
-//         res.status(500).json(err);
-//       }
 
     req.session.save(() => {
       req.session.email = user.email;
@@ -37,6 +18,33 @@ router.post('/', async (req, res) => {
 
       res.status(200).json(userData);
     });
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'eventure.confirm@gmail.com',
+        pass: process.env.GMAIL_PASSWORD,
+      }
+    });
+    
+    const mailOptions = {
+      from: 'eventure.confirm@gmail.com',
+      to: user.email,
+      subject: `Welcome ${user.username}! You are now part of Eventure!`,
+      text: 'Please explore the site and sign up for some events!', 
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+     console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        // do something useful
+      }
+    });
+
+
+
   } catch (err) {
     res.status(400).json(err);
   }
