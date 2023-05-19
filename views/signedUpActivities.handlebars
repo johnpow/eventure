@@ -1,26 +1,29 @@
 <div id="parent">
+  <h1 class="text-center container underline">Your committed Events</h1>
 {{#each signedUpActivities as |signedActivity| }}
 <div class="container my-3 py-1">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="bg-light p-4">
-          <div class="d-flex justify-content-between">
-            <h3>{{signedActivity.activity.activity_title}}</h3>
-            <h6 class="mt-2">Posted by {{activity.user.username}}</h6>
+      <div class="col-lg-8 bucksCard">
+          <div class="d-flex justify-content-between banner">
+            <img class="activityIcon" src="/images/{{activity.activity_category}}.png" width="60" height="60" alt="{{activity.activity_category}} Icon"/>
+            <h3 class="textPadding text-turquoise">{{signedActivity.activity.activity_title}}</h3>
+            <h6 class="mt-2 textPadding">Posted by {{activity.user.username}}</h6>
           </div>
+          <div class="bg-light p-4">
           <p>{{signedActivity.activity.activity_description}}</p> 
           <p><b>Date and Time: </b>{{signedActivity.activity.activity_date}}</p>
           <p><b>Location: </b>{{signedActivity.activity.activity_location}}</p> 
+          <p><b>Category: </b>{{signedActivity.activity.activity_category}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <button
-                  class="btn btn-outline-primary btn-sm dropSupBtn"
+                  class="btn btn-outline-primary btn-sm dropSupBtn bucksButton"
                   data-id="{{signedActivity.activity.id}}"
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#add-comment-form{{signedActivity.activity.id}}"
                   aria-expanded="false"
                   aria-controls="add-comment-form"
-                >Drop Activity</button>
+                >Drop Event</button>
                 <button
                   class="btn btn-outline-dark btn-sm "
                   id="view-comment-btn"
@@ -33,6 +36,9 @@
               </div>
               <div class="collapse mt-3" id="view-comment-list{{signedActivity.activity.id}}">
                 <ol>
+                  <div>
+                    <b><li>@{{activity.user.username}} (Host)</li></b>
+                  </div>   
                 {{#each signedActivity.activity.signups as |signup|}}
                   <div>
                     <b><li>@{{signup.user.username}}</li></b>

@@ -33,41 +33,52 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <i class="fas fa-bars white2red"></i>
+        <i class="fas fa-bars plainText"></i>
       </button>
   
       <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarButtonsExample">
         <!-- Left links -->
         
           {{#if logged_in}}
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link white2red" id="text-font" href="/">Home</a>
+            <a class="nav-link navBtnExtras" id="text-font" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link white2red" id="text-font" href="/dashboard">My Events</a>
+            <a class="nav-link navBtnExtras" id="text-font" href="/dashboard">My Events</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle white2red" id="text-font" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
-            <ul class="dropdown-menu">
-              {{#each categories as |category|}}
-                <li><a class="dropdown-item" href="/{{category.activity_category}}">{{category.activity_category}}</a></li>
-              {{/each}}
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link navBtnExtras" id="text-font" href="/signedUpActivities">Signed Up</a>
           </li>
            <li class="nav-item">
-            <a class="nav-link white2red" id="text-font" href="/signedUpActivities">Signed Up</a>
+            <a class="nav-link navBtnExtras" id="text-font" href="/newActivity">New Event</a>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle navBtnExtras" id="text-font" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Browse by Category</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/Education">Education</a></li>
+                <li><a class="dropdown-item" href="/Sports">Sports</a></li>
+                <li><a class="dropdown-item" href="/Arts and Crafts">Arts and Crafts</a></li>
+                <li><a class="dropdown-item" href="/Social">Social</a></li>
+                <li><a class="dropdown-item" href="/Music">Music</a></li>
+                <li><a class="dropdown-item" href="/Outdoors">Outdoors</a></li>
+                <li><a class="dropdown-item" href="/Tech">Tech</a></li>
+                <li><a class="dropdown-item" href="/Trivia">Trivia</a></li>
+                <li><a class="dropdown-item" href="/Pets">Pets</a></li>
+                <li><a class="dropdown-item" href="/Adventure">Adventure</a></li>
+                <li><a class="dropdown-item" href="/Entertainment">Entertainment</a></li>   
+            </ul>
+          </li> 
           {{/if}}
         </ul>
         <!-- Left links -->
-  
+      
         <div class="d-flex align-items-center">
           {{#if logged_in}}
-            <a class="bucksNavButton" id="logout">Logout</a>           
+            <a class="bucksNavButton loginBtn" id="logout">Logout</a>           
           {{else}}
-            <a class="bucksNavButton" href="/login">Login</a>
+            <a class="bucksNavButton loginBtn" href="/login">Login</a>
           {{/if}}
         </div>
       </div>

@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
           const activityData = await Activity.findAll({
               include: [
                   {
-                      model: User,
-                      attributes: ['username'],              
+                    model: User,
+                    attributes: ['username'],              
                   },
                   { model: SignUp, 
                     include: [        {
@@ -43,16 +43,9 @@ router.get('/', async (req, res) => {
               isFutureEvent: isFutureEvent,
             };
           });
-          const categoriesData = await Activity.findAll({
-            group: ['activity_category'],
-            attributes: ['activity_category'],
-        });
-        const categories = categoriesData.map((category) => category.get({ plain: true }));
-          
 
           res.render('homepage', {
               activities,
-              categories,
               logged_in: req.session.logged_in || false,
               user: req.session.user || null,
           });
@@ -83,7 +76,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
                 ],}]});
 
       const user = userData.get({ plain: true });
-      console.log(user);
       const userActivities = user.activities.map((activity) => {
         const plainActivity = activity;//.get({ plain: true });
         const username = req.session.user.username || null;
@@ -102,18 +94,11 @@ router.get('/dashboard', withAuth, async (req, res) => {
         //   isHost: isHost,
         };
       });
-      console.log(userActivities);
 
-      const categoriesData = await Activity.findAll({
-        group: ['activity_category'],
-        attributes: ['activity_category'],
-      });
-      const categories = categoriesData.map((category) => category.get({ plain: true }));
-        
+
       res.render('dashboard', {
         ...user,
         userActivities,
-        categories,
         logged_in: true
       });
     } catch (err) {
@@ -176,16 +161,11 @@ router.get('/signedUpActivities', withAuth, async (req, res) => {
                 },
             ],
         });
-        const categoriesData = await Activity.findAll({
-            group: ['activity_category'],
-            attributes: ['activity_category'],
-        });
-        const categories = categoriesData.map((category) => category.get({ plain: true }));
+        
         const signedUpActivities = signUpData.map((activity) => activity.get({ plain: true }));
         console.log(signedUpActivities);
         res.render('signedUpActivities', {
             signedUpActivities,
-            categories,
             logged_in: req.session.logged_in || false,
             user: req.session.user || null,
         });
@@ -205,19 +185,21 @@ router.get('/updateEvent/:id',withAuth, async (req, res) => {
                 },
             ],
         });
-        const categoriesData = await Activity.findAll({
-            group: ['activity_category'],
-            attributes: ['activity_category'],
-        });
-
-        const categories = categoriesData.map((category) => category.get({ plain: true }));
         const activity = activityData.get({ plain: true });
         const dateData = activity.activity_date;
-        console.log(date);
-        console.log(time);
+        const date1 = dateData.toLocaleString().slice(0,9).split("/");
+        const time = dateData.toTimeString().slice(0,5);
+        let date;
+        if(date1[0].length === 1) {
+            date = date1[2]+"-0"+date1[0]+"-"+date1[1];
+        } else {
+            date = date1[2]+"-"+date1[0]+"-"+date1[1];
+        }
+    
         res.render('updateEvent', {
+            time,
+            date,
             activity,
-            categories,
             logged_in: req.session.logged_in || false,
             user: req.session.user || null,
         });
@@ -246,16 +228,10 @@ router.get("/:category", async (req, res) => {
                 },
             ],
         });
-        const categoriesData = await Activity.findAll({
-            group: ['activity_category'],
-            attributes: ['activity_category'],
-        });
-
-        const categories = categoriesData.map((category) => category.get({ plain: true }));
         const activities = activityData.map((activity) => activity.get({ plain: true }));
         res.render('activitiesByCategory', {
             activities,
-            categories,
+            
             logged_in: req.session.logged_in || false,
             user: req.session.user || null,
         });

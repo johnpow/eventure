@@ -5,4 +5,8 @@ module.exports = {
     return DateTime.fromJSDate(date).toFormat('ff');
   },
   toUpperCase: (str) => str.toUpperCase(),
+  set_date: (date) => {
+    const dateInput = document.getElementById('date');
+    dateInput.datepicker('setDate', desiredDate);
+  },
 };
