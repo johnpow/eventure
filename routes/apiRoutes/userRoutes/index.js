@@ -7,6 +7,8 @@ router.post('/', async (req, res) => {
     const userData = await User.create(req.body);
 
     const user = userData.get({ plain: true });
+    
+try {
 
     const send = require('gmail-send')({
       user: 'eventure.confirm@gmail.com',
@@ -22,7 +24,9 @@ router.post('/', async (req, res) => {
           if (error) console.error(error);
           console.log(result);
         })
-    
+      } catch (err) {
+        res.status(500).json(err);
+      }
 
     req.session.save(() => {
       req.session.email = user.email;

@@ -14,6 +14,8 @@ router.post('/', withAuth, async (req, res) => {
     const activityData = await Activity.findByPk(req.body.activity_id, {
 
     });
+
+     try {
     const activity = activityData.get({ plain: true });
     const send = require('gmail-send')({
       user: 'eventure.confirm@gmail.com',
@@ -29,7 +31,9 @@ router.post('/', withAuth, async (req, res) => {
           if (error) console.error(error);
           console.log(result);
         })
-    
+      } catch (err) {
+        res.status(500).json(err);
+      }
 
     res.status(200).json(newSignUp);
   } catch (err) {
