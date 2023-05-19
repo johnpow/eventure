@@ -2,6 +2,8 @@
 const $parentDiv = document.querySelector('#parent');
 const $manageEvent = document.querySelector('#manageEvent');
 
+
+
 const createSignUp = async (event) => {
     event.preventDefault();
     let e = event.target;

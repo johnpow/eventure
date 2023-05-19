@@ -17,10 +17,14 @@ const signupFormHandler = async (event) => {
       });
   
       if (response.ok) {
+
         document.location.replace('/');
+
       } else {
         alert(response.statusText);
       }
+
+
     } catch (err) {
       alert(err.message);
     }

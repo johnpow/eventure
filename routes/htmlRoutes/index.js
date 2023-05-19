@@ -34,13 +34,13 @@ router.get('/', async (req, res) => {
             const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
             const signupsCount = plainActivity.signups.length + 1;
             const isHost = plainActivity.user.username === username;
-
-          
+            const isFutureEvent = new Date(plainActivity.activity_date) > new Date(); // Compare the event date with the current date
             return {
               ...plainActivity,
               isUserSignedUp: isUserSignedUp,
               signupsCount: signupsCount,
               isHost: isHost,
+              isFutureEvent: isFutureEvent,
             };
           });
 
@@ -62,13 +62,43 @@ router.get('/dashboard', withAuth, async (req, res) => {
       // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
-        include: [{ model: Activity }],
-      });
-  
+        include: [{ model: Activity,
+                    include: [
+                        {   model: SignUp,
+                            include: [        {
+                                        model: User,
+                                        attributes: ['username'],
+                                    },],
+                                },
+                            {   model: User,
+                                attributes: ['username'],
+                    },
+                ],}]});
+
       const user = userData.get({ plain: true });
-    
+      const userActivities = user.activities.map((activity) => {
+        const plainActivity = activity;//.get({ plain: true });
+        const username = req.session.user.username || null;
+        // const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
+        const signupsCount = plainActivity.signups.length + 1;
+        const isFutureEvent = new Date(plainActivity.activity_date) > new Date(); // Compare the event date with the current date
+           
+        // const isHost = plainActivity.user.username === username;
+
+      
+        return {
+          ...plainActivity,
+        //   isUserSignedUp: isUserSignedUp,
+          signupsCount: signupsCount,
+            isFutureEvent: isFutureEvent,
+        //   isHost: isHost,
+        };
+      });
+
+
       res.render('dashboard', {
         ...user,
+        userActivities,
         logged_in: true
       });
     } catch (err) {
