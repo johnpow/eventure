@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
           const activityData = await Activity.findAll({
               include: [
                   {
-                      model: User,
-                      attributes: ['username'],              
+                    model: User,
+                    attributes: ['username'],              
                   },
                   { model: SignUp, 
                     include: [        {
@@ -201,6 +201,7 @@ router.get("/:category", async (req, res) => {
         const activities = activityData.map((activity) => activity.get({ plain: true }));
         res.render('activitiesByCategory', {
             activities,
+            
             logged_in: req.session.logged_in || false,
             user: req.session.user || null,
         });

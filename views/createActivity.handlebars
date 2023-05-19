@@ -1,11 +1,13 @@
-<div class="container my-5 py-5">
+<div class="container py-5">
   <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="bg-light p-4">
-        <h2>New Event</h2>
+    <div class="col-lg-8 mx-auto eventCard">
+        <div class="banner">
+          <h2>New Event</h2>
+        </div>
+      <div class="bg-light p-4">  
         <form id="activityForm">
           <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label"><b>Title</b></label>
             <input type="text" class="form-control" id="title" name="title">
           </div>
           <div class="mb-3">
@@ -26,23 +28,25 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
+            <label for="date" class="form-label"><b>Date</b></label>
             <input type="date" class="form-control" id="date" name="date">
           </div>
           <div class="mb-3">
-            <label for="time" class="form-label">Time (24-hour format)</label>
+            <label for="time" class="form-label"><b>Time (24-hour format)</b></label>
             <input type="text" class="form-control" id="time" name="time" pattern="^(?:2[0-3]|[01][0-9]):[0-5][0-9]$">
             <small class="text-muted">Example: 18:30 for 6:30pm</small>
           </div>
           <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
+            <label for="location" class="form-label"><b>Location/Address</b></label>
             <input type="text" class="form-control" id="location" name="location">
           </div>
           <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label"><b>Description</b></label>
             <textarea class="form-control" id="description" name="description" rows="5"></textarea>
           </div>
-          <button type="button" id="createBtn" class="btn btn-primary">Create Event</button>
+          <div class="createBtn">
+            <button type="button" id="createBtn" class="btn btn-primary bucksSignupButton">Create Event</button>
+          </div>
         </form>
       </div>
     </div>
