@@ -1,11 +1,28 @@
 const router = require('express').Router();
 const { User } = require('../../../models');
+const dotenv = require('dotenv').config();
 
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
     const user = userData.get({ plain: true });
+
+    const send = require('gmail-send')({
+      user: 'eventure.confirm@gmail.com',
+      pass: process.env.GMAIL_PASSWORD,
+    
+    });
+
+        send({
+          to:  `${req.body.email}`,
+          subject: `Welcome ${req.body.username}! You are now part of Eventure!`,
+          text:    'Please explore the site and sign up for some events!',  
+        }, (error, result, fullResult) => {
+          if (error) console.error(error);
+          console.log(result);
+        })
+    
 
     req.session.save(() => {
       req.session.user_id = user.id;
