@@ -5,7 +5,7 @@ const routes = require('./routes');
 const helpers = require('./utils');
 
 const hbs = exphbs.create({
-  helpers
+  helpers,
 });
 
 const sequelize = require('./config/connection');

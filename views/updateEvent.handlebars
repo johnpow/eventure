@@ -5,7 +5,7 @@
         <h2>Update Event</h2>
       </div>
       <div class="bg-light p-4">
-        <form id="activityForm">
+        <form id="eventForm" data-id="{{activity.id}}">
           <div class="mb-3">
             <label for="title" class="form-label"><b>Title</b></label>
             <input type="text" class="form-control" id="title" name="title" value="{{activity.activity_title}}">
@@ -34,7 +34,7 @@
           <div class="mb-3">
             <label for="time" class="form-label"><b>Time (24-hour format)</b></label>
             <input type="text" class="form-control" id="time" name="time" pattern="^(?:2[0-3]|[01][0-9]):[0-5][0-9]$" value="">
-            <small class="text-muted">Example: 18:30</small>
+            <small class="text-muted">Example: 18:30 for 6:30pm</small>
           </div>
           <div class="mb-3">
             <label for="location" class="form-label"><b>Location/Address</b></label>
@@ -54,5 +54,6 @@
   </div>
 </div>
 
+<script src="/js/editEvent.js"></script>
 
 

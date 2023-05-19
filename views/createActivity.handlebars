@@ -11,9 +11,9 @@
             <input type="text" class="form-control" id="title" name="title">
           </div>
           <div class="mb-3">
-            <label for="category" class="form-label"><b>Category</b></label>
+            <label for="category" class="form-label">Category</label>
             <select class="form-select"  id="category" name="category">
-              <option value="{{activity.activity_category}}">{{activity.activity_category}}</option>
+              <option value="">Select a category</option>
               <option value="Education">Education</option>
               <option value="Sports">Sports</option>
               <option value="Arts and Crafts">Arts and Crafts</option>
@@ -34,7 +34,7 @@
           <div class="mb-3">
             <label for="time" class="form-label"><b>Time (24-hour format)</b></label>
             <input type="text" class="form-control" id="time" name="time" pattern="^(?:2[0-3]|[01][0-9]):[0-5][0-9]$">
-            <small class="text-muted">Example: 18:30</small>
+            <small class="text-muted">Example: 18:30 for 6:30pm</small>
           </div>
           <div class="mb-3">
             <label for="location" class="form-label"><b>Location/Address</b></label>

@@ -14,8 +14,9 @@ const createActivity = async (event) => {
     const activity_description = $description.value.trim();
     const date = $date.value.trim();
     const time = $time.value.trim();
-    const activity_date = date.split("/").reverse().join("-") + " " + time+":00";
+    const activity_date = date+ " " + time+":00";
     console.log(activity_date);
+    console.log(date);
     const activity_location = $location.value.trim();
     const activity_category = $category.value.trim();
     
