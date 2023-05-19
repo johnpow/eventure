@@ -1,35 +1,52 @@
-<div class="container my-5 py-5">
+<div class="container py-5">
   <div class="row">
-    <div class="col-lg-8 mx-auto">
-      <div class="bg-light p-4">
-        <h2>New Activity</h2>
+    <div class="col-lg-8 mx-auto eventCard">
+        <div class="banner">
+          <h2>New Event</h2>
+        </div>
+      <div class="bg-light p-4">  
         <form id="activityForm">
           <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
+            <label for="title" class="form-label"><b>Title</b></label>
             <input type="text" class="form-control" id="title" name="title">
           </div>
           <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <input type="text" class="form-control" id="category" name="category">
+            <label for="category" class="form-label"><b>Category</b></label>
+            <select class="form-select"  id="category" name="category">
+              <option value="{{activity.activity_category}}">{{activity.activity_category}}</option>
+              <option value="Education">Education</option>
+              <option value="Sports">Sports</option>
+              <option value="Arts and Crafts">Arts and Crafts</option>
+              <option value="Social">Social</option>
+              <option value="Music">Music</option>
+              <option value="Outdoors">Outdoors</option>
+              <option value="Tech">Tech</option>
+              <option value="Trivia">Trivia</option>
+              <option value="Pets">Pets</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Entertainment">Entertainment</option>
+            </select>
           </div>
           <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
+            <label for="date" class="form-label"><b>Date</b></label>
             <input type="date" class="form-control" id="date" name="date">
           </div>
           <div class="mb-3">
-            <label for="time" class="form-label">Time (24-hour format)</label>
+            <label for="time" class="form-label"><b>Time (24-hour format)</b></label>
             <input type="text" class="form-control" id="time" name="time" pattern="^(?:2[0-3]|[01][0-9]):[0-5][0-9]$">
             <small class="text-muted">Example: 18:30</small>
           </div>
           <div class="mb-3">
-            <label for="location" class="form-label">Location</label>
+            <label for="location" class="form-label"><b>Location/Address</b></label>
             <input type="text" class="form-control" id="location" name="location">
           </div>
           <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
+            <label for="description" class="form-label"><b>Description</b></label>
             <textarea class="form-control" id="description" name="description" rows="5"></textarea>
           </div>
-          <button type="button" id="createBtn" class="btn btn-primary">Create Activity</button>
+          <div class="createBtn">
+            <button type="button" id="createBtn" class="btn btn-primary bucksSignupButton">Create Event</button>
+          </div>
         </form>
       </div>
     </div>

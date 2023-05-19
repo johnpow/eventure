@@ -1,20 +1,40 @@
 <div id="parent">
+  <div class="container my-3 py-1">
+    <div class="row justify-content-center">
+      <h1 class="text-center underline">{{currentCategory}} events happening soon</h1>
+    </div>
+  </div>
 {{#each activities as |activity| }}
 <div class="container my-3 py-1">
     <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="bg-light p-4">
-          <div class="d-flex justify-content-between">
-            <h3>{{activity.activity_title}}</h3>
-            <h6 class="mt-2">Posted by {{activity.user.username}}</h6>
+      <div class="col-lg-8 bucksCard">        
+          <div class="d-flex justify-content-between banner align-items-center">
+            <img class="activityIcon" src="/images/{{activity.activity_category}}.png" width="60" height="60" alt="{{activity.activity_category}} Icon"/>
+            <h3 class="textPadding text-turquoise">{{activity.activity_title}}</h3>
+            <h6 class="mt-2 textPadding">Posted by {{activity.user.username}}</h6>
           </div>
+          <div class="bg-light p-4">
           <p>{{activity.activity_description}}</p> 
           <p><b>Date and Time: </b>{{activity.activity_date}}</p>
           <p><b>Location: </b>{{activity.activity_location}}</p> 
+          <p><b>Category: </b>{{activity.activity_category}}</p>
               <div class="d-flex justify-content-between align-items-center">
-
+                {{#if isHost}}
+                <a id ="manageEvent" href="/updateEvent/{{activity.id}}">Manage Event</a>
+                {{else}}
+              {{#if isUserSignedUp}}
                 <button
-                  class="btn btn-outline-primary btn-sm signupBtn"
+                  class="btn btn-outline-primary btn-sm dropSupBtn bucksButton"
+                  data-id="{{activity.id}}"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#add-comment-form{{activity.id}}"
+                  aria-expanded="false"
+                  aria-controls="add-comment-form"
+                >Drop Event</button>
+                {{else}}
+                <button
+                  class="btn btn-outline-primary btn-sm signupBtn bucksSignupButton"
                   data-id="{{activity.id}}"
                   type="button"
                   data-bs-toggle="collapse"
@@ -22,15 +42,8 @@
                   aria-expanded="false"
                   aria-controls="add-comment-form"
                 >Sign-up</button>
-                <button
-                  class="btn btn-outline-primary btn-sm dropSupBtn"
-                  data-id="{{activity.id}}"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#add-comment-form{{activity.id}}"
-                  aria-expanded="false"
-                  aria-controls="add-comment-form"
-                >Drop Activity</button>
+              {{/if}}
+              {{/if}}
                 <button
                   class="btn btn-outline-dark btn-sm "
                   id="view-comment-btn"
@@ -43,6 +56,9 @@
               </div>
               <div class="collapse mt-3" id="view-comment-list{{activity.id}}">
                 <ol>
+                  <div>
+                    <b><li>@{{activity.user.username}} (Host)</li></b>
+                  </div>                  
                 {{#each activity.signups as |signup|}}
                   <div>
                     <b><li>@{{signup.user.username}}</li></b>

@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
           const activityData = await Activity.findAll({
               include: [
                   {
-                      model: User,
-                      attributes: ['username'],              
+                    model: User,
+                    attributes: ['username'],              
                   },
                   { model: SignUp, 
                     include: [        {
@@ -180,9 +180,7 @@ router.get('/updateEvent/:id',withAuth, async (req, res) => {
 
         const categories = categoriesData.map((category) => category.get({ plain: true }));
         const activity = activityData.get({ plain: true });
-        const dateData = activity.activity_date;
-        console.log(date);
-        console.log(time);
+        // const dateData = activity.activity_date;
         res.render('updateEvent', {
             activity,
             categories,
@@ -224,6 +222,7 @@ router.get("/:category", async (req, res) => {
         res.render('activitiesByCategory', {
             activities,
             categories,
+            currentCategory: req.params.category,
             logged_in: req.session.logged_in || false,
             user: req.session.user || null,
         });
