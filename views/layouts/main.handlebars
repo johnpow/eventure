@@ -37,7 +37,7 @@
       </button>
   
       <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarButtonsExample">
         <!-- Left links -->
         
           {{#if logged_in}}
@@ -51,9 +51,17 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle white2red" id="text-font" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
             <ul class="dropdown-menu">
-              {{#each categories as |category|}}
-                <li><a class="dropdown-item" href="/{{category.activity_category}}">{{category.activity_category}}</a></li>
-              {{/each}}
+                <li><a class="dropdown-item" href="/Education">Education</a></li>
+                <li><a class="dropdown-item" href="/Sports">Sports</a></li>
+                <li><a class="dropdown-item" href="/Arts and Crafts">Arts and Crafts</a></li>
+                <li><a class="dropdown-item" href="/Social">Social</a></li>
+                <li><a class="dropdown-item" href="/Music">Music</a></li>
+                <li><a class="dropdown-item" href="/Outdoors">Outdoors</a></li>
+                <li><a class="dropdown-item" href="/Tech">Tech</a></li>
+                <li><a class="dropdown-item" href="/Trivia">Trivia</a></li>
+                <li><a class="dropdown-item" href="/Pets">Pets</a></li>
+                <li><a class="dropdown-item" href="/Adventure">Adventure</a></li>
+                <li><a class="dropdown-item" href="/Entertainment">Entertainment</a></li>   
             </ul>
           </li>
            <li class="nav-item">
