@@ -15,25 +15,26 @@ router.post('/', withAuth, async (req, res) => {
 
     });
 
-     try {
-    const activity = activityData.get({ plain: true });
-    const send = require('gmail-send')({
-      user: 'eventure.confirm@gmail.com',
-      pass: process.env.GMAIL_PASSWORD,
-    
-    });
 
-        send({
-          to:  req.session.email,
-          subject: `You are now signed up for ${activity.activity_title}!`,
-          text:    'Enjoy the event!',  
-        }, (error, result, fullResult) => {
-          if (error) console.error(error);
-          console.log(result);
-        })
-      } catch (err) {
-        res.status(500).json(err);
-      }
+    const activity = activityData.get({ plain: true });
+    // try {
+    // const send = require('gmail-send')({
+    //   user: 'eventure.confirm@gmail.com',
+    //   pass: process.env.GMAIL_PASSWORD,
+    
+    // });
+
+    //     send({
+    //       to:  req.session.email,
+    //       subject: `You are now signed up for ${activity.activity_title}!`,
+    //       text:    'Enjoy the event!',  
+    //     }, (error, result, fullResult) => {
+    //       if (error) console.error(error);
+    //       console.log(result);
+    //     })
+    //   } catch (err) {
+    //     res.status(500).json(err);
+    //   }
 
     res.status(200).json(newSignUp);
   } catch (err) {
