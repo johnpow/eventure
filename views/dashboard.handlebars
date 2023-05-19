@@ -9,8 +9,10 @@
   </div>
 </div>
 <div>
-<h2 class="text-center">My Events</h2>
-{{#each activities as |activity| }}
+<h2 class="text-center">My Future Events</h2>
+
+{{#each userActivities as |activity| }}
+{{#if activity.isFutureEvent}}
   <div class="container my-3 py-1">
       <div class="row justify-content-center">
         <div class="col-lg-8 bucksCard banner">
@@ -19,10 +21,36 @@
             <p>{{activity.activity_description}}</p>
             <p><b>Date and Time: </b>{{activity.activity_date}}</p>
             <p><b>Location: </b>{{activity.activity_location}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+                <button
+                  class="btn btn-outline-dark btn-sm "
+                  id="view-comment-btn"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#view-comment-list{{activity.id}}"
+                  aria-expanded="false"
+                  aria-controls="view-comment-list"
+                >View Attendees ({{activity.signupsCount}})</button>
+              </div>
+                            <div class="collapse mt-3" id="view-comment-list{{activity.id}}">
+                <ol>
+                  <div>
+                    <b><li>@{{activity.user.username}} (You)</li></b>
+                  </div>                  
+                {{#each activity.signups as |signup|}}
+                  <div>
+                    <b><li>@{{signup.user.username}}</li></b>
+                  </div>
+                {{/each}}
+                </ol>
+              </div>
           </div>
+              
         </div>
      </div>
+
   </div>
+{{/if}}
 {{/each}}
 </div>
 
@@ -31,6 +59,49 @@
           <h3 class="text-center text-primary"><a class="newEventButton" href="/newActivity">Create New Event</a></h3>
     </div>
 </div>
+<h2 class="text-center">My Past Events</h2>
 
+{{#each userActivities as |activity| }}
+{{#unless activity.isFutureEvent}}
+  <div class="container my-3 py-1">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 bucksCard banner">
+          <h2 class="textPadding"><a class="plainText" href="/blog/{{activity.id}}">{{activity.activity_title}}</a></h2>
+          <div class="bg-light p-4 blackText">
+            <p>{{activity.activity_description}}</p>
+            <p><b>Date and Time: </b>{{activity.activity_date}}</p>
+            <p><b>Location: </b>{{activity.activity_location}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+                <button
+                  class="btn btn-outline-dark btn-sm "
+                  id="view-comment-btn"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#view-comment-list{{activity.id}}"
+                  aria-expanded="false"
+                  aria-controls="view-comment-list"
+                >View Attendees ({{activity.signupsCount}})</button>
+              </div>
+                            <div class="collapse mt-3" id="view-comment-list{{activity.id}}">
+                <ol>
+                  <div>
+                    <b><li>@{{activity.user.username}} (You)</li></b>
+                  </div>                  
+                {{#each activity.signups as |signup|}}
+                  <div>
+                    <b><li>@{{signup.user.username}}</li></b>
+                  </div>
+                {{/each}}
+                </ol>
+              </div>
+          </div>
+              
+        </div>
+     </div>
+
+  </div>
+{{/unless}}
+{{/each}}
+</div>
 
 

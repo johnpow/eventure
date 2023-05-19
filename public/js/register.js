@@ -1,3 +1,11 @@
+
+// const dotenv = require('dotenv').config();
+// const send = require('gmail-send')({
+//     user: 'eventure.confirm@gmail.com',
+//     pass: process.env.GMAIL_PASSWORD,
+
+//   });
+
 const signupFormHandler = async (event) => {
     console.log("signupFormHandler called");
     event.preventDefault();
@@ -17,10 +25,14 @@ const signupFormHandler = async (event) => {
       });
   
       if (response.ok) {
+
         document.location.replace('/');
+
       } else {
         alert(response.statusText);
       }
+
+
     } catch (err) {
       alert(err.message);
     }

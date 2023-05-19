@@ -1,6 +1,8 @@
 <div id="parent">
   <h1 class="text-center underline container">Upcoming Events Near You</h1>
+
 {{#each activities as |activity| }}
+{{#if activity.isFutureEvent}}
 <div class="container my-3 py-1">
     <div class="row justify-content-center">
       <div class="col-lg-8 bucksCard">
@@ -65,7 +67,10 @@
       </div>
     </div>
   </div>
+  {{/if}}
 {{/each}}
+
+
 </div>
 
 <script src="./js/signup.js"></script>
