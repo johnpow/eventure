@@ -231,7 +231,7 @@ router.get("/:category", async (req, res) => {
         const activities = activityData.map((activity) => activity.get({ plain: true }));
         res.render('activitiesByCategory', {
             activities,
-            
+            currentCategory : req.params.category,
             logged_in: req.session.logged_in || false,
             user: req.session.user || null,
         });
