@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Activity, User, SignUp } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// The `/` endpoint (this is for the homepage)
 router.get('/', async (req, res) => {
   if(req.session.logged_in) {
       try {
@@ -21,11 +22,6 @@ router.get('/', async (req, res) => {
 
               ],
               order: [['activity_date', 'ASC']],
-            //   where: {
-            //         activity_date: {
-            //             [Op.gt]: new Date(),
-            //         },
-            //     },
           });
 
           const activities = activityData.map((activity) => {
@@ -43,7 +39,7 @@ router.get('/', async (req, res) => {
               isFutureEvent: isFutureEvent,
             };
           });
-
+          // renders the homepage template with the activities data for the logged in user  
           res.render('homepage', {
               activities,
               logged_in: req.session.logged_in || false,
@@ -53,10 +49,12 @@ router.get('/', async (req, res) => {
           res.status(500).json(err);
       }
   } else { 
+      // renders the homepage template without the activities data before the user logs in
       res.render('home');
   }  
 });
 
+// The `/dashboard` endpoint (this is for the dashboard)
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
       // Find the logged in user based on the session ID
@@ -77,21 +75,15 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
       const user = userData.get({ plain: true });
       const userActivities = user.activities.map((activity) => {
-        const plainActivity = activity;//.get({ plain: true });
+        const plainActivity = activity;
         const username = req.session.user.username || null;
-        // const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
         const signupsCount = plainActivity.signups.length + 1;
         const isFutureEvent = new Date(plainActivity.activity_date) > new Date(); // Compare the event date with the current date
-           
-        // const isHost = plainActivity.user.username === username;
-
-      
+                 
         return {
           ...plainActivity,
-        //   isUserSignedUp: isUserSignedUp,
           signupsCount: signupsCount,
-            isFutureEvent: isFutureEvent,
-        //   isHost: isHost,
+          isFutureEvent: isFutureEvent,
         };
       });
 
@@ -106,6 +98,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
+// renders the login template
 router.get('/login', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
@@ -116,6 +109,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+// renders the register template
 router.get('/register', (req, res) => {
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
@@ -126,6 +120,7 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
+// renders the createActivity template
 router.get('/newActivity', withAuth, async (req, res) => {
   try {
       res.render('createActivity', {
@@ -136,6 +131,7 @@ router.get('/newActivity', withAuth, async (req, res) => {
   }
 });
 
+// renders the updateActivity template
 router.get('/signedUpActivities', withAuth, async (req, res) => {
     try {
         const signUpData = await SignUp.findAll({
@@ -174,6 +170,7 @@ router.get('/signedUpActivities', withAuth, async (req, res) => {
     }
 });
 
+// renders the updateActivity template for the activity with the given id
 router.get('/updateEvent/:id',withAuth, async (req, res) => {
     console.log("updateEvent");
     try {
@@ -208,7 +205,7 @@ router.get('/updateEvent/:id',withAuth, async (req, res) => {
     }
 });
 
-
+// renders the events with the specified category
 router.get("/:category", async (req, res) => {
     try {
         const activityData = await Activity.findAll({

@@ -2,7 +2,9 @@ const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection.js');
 const bcrypt = require('bcrypt');
 
+// Creates the User model and defines the columns for the table 'user'
 class User extends Model {
+  // checks if the password is valid
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
@@ -48,7 +50,6 @@ User.init(
     sequelize,
     freezeTableName: true,
     modelName: 'user',
-    // timestamps: false,
   }
 );
 

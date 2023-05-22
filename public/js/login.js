@@ -4,9 +4,12 @@ const loginFormHandler = async (event) => {
     // Collect values from the login form
     const email = document.querySelector('#typeEmailX').value.trim();
     const password = document.querySelector('#typePasswordX').value.trim();
+    // defines a modal
     const myModal = new bootstrap.Modal(document.getElementById("loginModal"));
+    // Checks if all fields are filled out
     if(!email || !password){
       document.querySelector('#errorText').textContent = 'Please fill out all fields';
+      // Shows the modal with the error message
       myModal.show();
       document.getElementById("loginModal").addEventListener('hidden.bs.modal', function() {
         location.reload();

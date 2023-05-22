@@ -29,13 +29,14 @@ const smtpTransport = nodemailer.createTransport({
 });
 
 
-
+// The `/api/user` endpoint (this is for registering a new user)
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
     const user = userData.get({ plain: true });
 
+    // set up session variables 
     req.session.save(() => {
       req.session.email = user.email;
       req.session.user_id = user.id;
@@ -46,7 +47,7 @@ router.post('/', async (req, res) => {
       res.status(200).json(userData);
     });
 
-
+    // send welcome email to new user 
     const mailOptions = {
       from: "eventure.confirm@gmail.com",
       to: user.email,
@@ -67,6 +68,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// The `/api/user/login` endpoint (this is for logging in a user)
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -87,7 +89,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
+    // set up session variables
     req.session.save(() => {
       req.session.email = user.email;
       req.session.user_id = user.id;
@@ -102,6 +104,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// The `/api/user/logout` endpoint (this is for logging out a user)
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
