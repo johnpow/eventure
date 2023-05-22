@@ -40,7 +40,6 @@ router.get('/', async (req, res) => {
             };
           });
 
-          console.log(activities[0].activity_date)
           // renders the homepage template with the activities data for the logged in user  
           res.render('homepage', {
               activities,
