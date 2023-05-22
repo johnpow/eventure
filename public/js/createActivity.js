@@ -20,10 +20,14 @@ const createActivity = async (event) => {
     const activity_location = $location.value.trim();
     const activity_category = $category.value.trim();
     
-
-
     if(!activity_title || !activity_description || !date || !time || !activity_location){
-        return alert('Please fill out all fields!');
+        const myModal = new bootstrap.Modal(document.getElementById("createModal"));
+          document.querySelector('#errorText').textContent = "Please fill out all fields";
+          myModal.show();
+          document.getElementById("createModal").addEventListener('hidden.bs.modal', function() {
+            location.reload();
+          });
+        return;
     }
 
     try{
