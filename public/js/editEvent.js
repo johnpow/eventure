@@ -8,7 +8,7 @@ const $updateBtn = document.getElementById('updateBtn');
 const $deleteBtn = document.getElementById('deleteBtn');
 const $eventForm = document.getElementById('eventForm');
 
-
+// A function to update an event
 const updateEvent = async (event) => {
     event.preventDefault();
 
@@ -21,7 +21,7 @@ const updateEvent = async (event) => {
     const activity_date = date.split("/").reverse().join("-") + " " + time+":00";
     const id = $eventForm.dataset.id;
 
-    
+    // Checks if all fields are filled out
     if(!activity_title || !date || !time || !activity_location || !activity_category){
         const myModal = new bootstrap.Modal(document.getElementById("updateModal"));
           document.querySelector('#errorText').textContent = "Please fill out all fields";
@@ -32,6 +32,7 @@ const updateEvent = async (event) => {
         return;
     }
 
+    // Calls the api route to update an event
     try{
         const response = await fetch(`/api/editEvent/${id}`, {
             method: 'PUT',
@@ -49,11 +50,12 @@ const updateEvent = async (event) => {
     }
 };
 
+// A function to delete an event
 const deleteEvent = async (event) => {
     event.preventDefault();
 
     const id = $eventForm.dataset.id;
-
+    // Calls the api route to delete an event
     try{
         const response = await fetch(`/api/activity/${id}`, {
             method: 'DELETE',
@@ -70,5 +72,7 @@ const deleteEvent = async (event) => {
     }
 };
 
+// Event listener for the update event button
 $updateBtn.addEventListener('click', updateEvent);
+// Event listener for the delete event button
 $deleteBtn.addEventListener('click', deleteEvent);

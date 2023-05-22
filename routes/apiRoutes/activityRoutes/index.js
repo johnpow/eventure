@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Activity } = require('../../../models');
 const withAuth = require('../../../utils/auth');
 
+// The `/api/activity` endpoint (this is for creating a new activity)
 router.post('/', withAuth, async (req, res) => {
   try {
     const newActivity = await Activity.create({
@@ -15,6 +16,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// The `/api/activity/:id` endpoint (this is for deleting an activity with a specific id)
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const activityData = await Activity.destroy({

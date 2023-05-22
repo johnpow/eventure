@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 
+// define nodemailer transporter using smtp
 const oauth2Client = new OAuth2(
   process.env.CLIENT_ID, // ClientID
   process.env.CLIENT_SECRET, // Client Secret
@@ -29,7 +30,7 @@ const smtpTransport = nodemailer.createTransport({
   }
 });
 
-
+// The `/api/signup` endpoint (this is for signing up the user for an event)
 router.post('/', withAuth, async (req, res) => {
   try {
     const newSignUp = await SignUp.create({
@@ -45,6 +46,7 @@ router.post('/', withAuth, async (req, res) => {
 
     const activity = activityData.get({ plain: true });
 
+    // send confirmation email to user
     const mailOptions = {
       from: "eventure.confirm@gmail.com",
       to: req.session.email,
@@ -65,6 +67,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// The `/api/signup/:activity_id` endpoint (this is for dropping the user from an event with a specific activity_id)
 router.delete('/:activity_id', withAuth, async (req, res) => {
   try {
     const signupData = await SignUp.destroy({

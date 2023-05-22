@@ -22,7 +22,7 @@ app.set('view engine', 'handlebars');
 // this will allow us to store data on the session object
 //process the cookie
 const sessionConfig = {
-  secret: 'Super secret secret', // normally this should be an environmental variable
+  secret: 'Super secret secret', 
   resave: false,
   saveUninitialized: false,
 };
@@ -32,10 +32,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-// This will create a req.session object for every request that comes into our server
+// This will create a req.session object for every request that comes to the server
 app.use(session(sessionConfig));
 
-// /users/c75066b2-1082-4a98-8718-4e5536dbac5e
 app.use(routes);
 
 
