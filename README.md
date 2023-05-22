@@ -19,6 +19,8 @@ Eventure is a dynamic Seattle-based event planning and discovery website, design
 
 ![user experience](./public/images/mainpage.png)
 
+## Video Demo Link
+https://drive.google.com/file/d/191xIH6JHY_l3xdmr7V9RSJ6Z-oLxmGKK/view
 
 ## Credits
 This was a group effort of [@johnpow](https://github.com/johnpow), [@Arbitrary_Stag](https://github.com/Arbitrary-Stag), and [@saritha2708](https://github.com/saritha2708).
