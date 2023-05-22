@@ -73,9 +73,10 @@
         </ul>
         <!-- Left links -->
       
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-center">
           {{#if logged_in}}
-            <a class="bucksNavButton loginBtn" id="logout">Logout</a>           
+
+            <a class="bucksNavButton loginBtn" id="logout">Logout</a>   
           {{else}}
             <a class="bucksNavButton loginBtn" href="/login">Login</a>
           {{/if}}
@@ -94,12 +95,10 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"></script>
   <!-- Render script for logged in users only -->
-<div class="d-flex align-items-center justify-content-center">
-          {{#if logged_in}}
-            <a class="bucksNavButton loginBtn" id="logout">Logout</a>           
-          {{else}}
-            <a class="bucksNavButton loginBtn" href="/login">Login</a>
-          {{/if}}</div>
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
 </body>
 
 </html>
