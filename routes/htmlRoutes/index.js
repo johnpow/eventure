@@ -207,7 +207,7 @@ router.get('/updateEvent/:id',withAuth, async (req, res) => {
 });
 
 // renders the events with the specified category
-router.get("/:category", async (req, res) => {
+router.get("/:category", withAuth, async (req, res) => {
     try {
         const activityData = await Activity.findAll({
             where: {
@@ -226,7 +226,22 @@ router.get("/:category", async (req, res) => {
                 },
             ],
         });
-        const activities = activityData.map((activity) => activity.get({ plain: true }));
+        // const activities = activityData.map((activity) => activity.get({ plain: true }));
+        const activities = activityData.map((activity) => {
+            const plainActivity = activity.get({ plain: true });
+            const username = req.session.user.username || null;
+            const isUserSignedUp = plainActivity.signups.some((signup) => signup.user.username === username);
+            const signupsCount = plainActivity.signups.length + 1;
+            const isHost = plainActivity.user.username === username;
+            const isFutureEvent = new Date(plainActivity.activity_date) > new Date(); // Compare the event date with the current date
+            return {
+              ...plainActivity,
+              isUserSignedUp: isUserSignedUp,
+              signupsCount: signupsCount,
+              isHost: isHost,
+              isFutureEvent: isFutureEvent,
+            };
+          });
         res.render('activitiesByCategory', {
             activities,
             currentCategory : req.params.category,
