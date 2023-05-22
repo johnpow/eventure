@@ -1,4 +1,3 @@
-console.log('editEvent.js loaded');
 const $title = document.getElementById('title');
 const $date = document.getElementById('date');
 const $time = document.getElementById('time');
@@ -22,17 +21,15 @@ const updateEvent = async (event) => {
     const activity_date = date.split("/").reverse().join("-") + " " + time+":00";
     const id = $eventForm.dataset.id;
 
-    console.log(activity_date);
-    console.log(id);
-    console.log(activity_title);
-    console.log(activity_description);
-    console.log(activity_location);
-    console.log(activity_category);
-
-
-
+    
     if(!activity_title || !date || !time || !activity_location || !activity_category){
-        return alert('Please fill out all fields!');
+        const myModal = new bootstrap.Modal(document.getElementById("updateModal"));
+          document.querySelector('#errorText').textContent = "Please fill out all fields";
+          myModal.show();
+          document.getElementById("updateModal").addEventListener('hidden.bs.modal', function() {
+            location.reload();
+          });
+        return;
     }
 
     try{
@@ -72,8 +69,6 @@ const deleteEvent = async (event) => {
         alert(err);
     }
 };
-
-
 
 $updateBtn.addEventListener('click', updateEvent);
 $deleteBtn.addEventListener('click', deleteEvent);
