@@ -39,6 +39,7 @@ router.get('/', async (req, res) => {
               isFutureEvent: isFutureEvent,
             };
           });
+
           // renders the homepage template with the activities data for the logged in user  
           res.render('homepage', {
               activities,
