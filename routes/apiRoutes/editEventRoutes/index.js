@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Activity } = require('../../../models');
 const withAuth = require('../../../utils/auth');
 
-
+// The `/api/activity/:id` endpoint (this is for updating an activity with a specific id)
 router.put('/:id', withAuth, async (req, res) => {
   try {
     const activityData = await Activity.update(req.body,{

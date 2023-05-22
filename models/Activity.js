@@ -1,6 +1,7 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection.js');
 
+// Creates the Activity model and defines the columns for the table 'activity'
 class Activity extends Model {
 }
 
@@ -45,7 +46,6 @@ Activity.init(
     sequelize,
     freezeTableName: true,
     modelName: 'activity',
-    // timestamps: false,
   }
 );
 

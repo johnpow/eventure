@@ -1,12 +1,14 @@
+// A function to handle the registration of new users
 const signupFormHandler = async (event) => {
-    console.log("signupFormHandler called");
     event.preventDefault();
   
     const username = document.querySelector('#name-signup').value.trim();
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
+    // defines a modal
     const myModal = new bootstrap.Modal(document.getElementById("registerModal"));
 
+    // Checks if all fields are filled out
     if (!username || !email || !password) {
       document.querySelector('#errorText').textContent = 'Please fill out all fields';
       myModal.show();
@@ -15,6 +17,7 @@ const signupFormHandler = async (event) => {
       });
       return;
     }
+    // sends a POST request to the api route to register a new user
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
@@ -33,7 +36,7 @@ const signupFormHandler = async (event) => {
         } else {
           document.querySelector('#errorText').textContent = data.errors[0].message;
         }
-
+        // Shows the modal with the error message
         myModal.show();
         document.getElementById("registerModal").addEventListener('hidden.bs.modal', function() {
           location.reload();
@@ -41,7 +44,7 @@ const signupFormHandler = async (event) => {
     }
   };
 
-
+// Event listener for the signup button
 document
     .querySelector('#signupBtn')
     .addEventListener('click', signupFormHandler);  

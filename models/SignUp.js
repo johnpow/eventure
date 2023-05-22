@@ -1,6 +1,7 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection.js');
 
+// Creates the SignUp model and defines the columns for the table 'signup'
 class SignUp extends Model {
 }
 
@@ -32,7 +33,6 @@ SignUp.init(
     sequelize,
     freezeTableName: true,
     modelName: 'signup',
-    // timestamps: false,
   }
 );
 
